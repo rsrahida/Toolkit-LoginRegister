@@ -13,13 +13,16 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 400px;
   height: auto;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 h2 {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 25px;
+  color: #fb00c5;
+  margin-bottom: 5px;
+  margin-top: -10px;
 }
 
 .form-group {
@@ -44,12 +47,12 @@ h2 {
 }
 
 .form-group input:focus {
-  border-color: #4f96ff;
+  border-color: #e24fff;
   outline: none;
 }
 
 .error-message {
-  color: #ff4d4d;
+  color: #f70000;
   font-size: 12px;
   margin-top: 5px;
 }
@@ -57,7 +60,7 @@ h2 {
 .auth-button {
   width: 100%;
   padding: 12px;
-  background-color: #4f96ff;
+  background-color: #fb77e3;
   color: white;
   font-size: 16px;
   border: none;
@@ -67,7 +70,7 @@ h2 {
 }
 
 .auth-button:hover {
-  background-color: #3576d5;
+  background-color: #faafda;
 }
 
 .auth-button:disabled {
@@ -82,21 +85,11 @@ h2 {
 }
 
 .auth-redirect a {
-  color: #4f96ff;
+  color: #ff2828;
   text-decoration: none;
+  font-size: 15px;
 }
 
 .auth-redirect a:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-  .auth-form {
-    padding: 20px;
-    width: 90%;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
 }

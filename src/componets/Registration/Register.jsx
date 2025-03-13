@@ -78,7 +78,7 @@ const Register = () => {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>🌸 Create Your Account 🌸</h2>
         {error && <div className="error-message">{error}</div>}
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -122,7 +122,7 @@ const Register = () => {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-            type="email"
+            type="text"
             id="email"
             name="email"
             value={formData.email}
@@ -163,7 +163,7 @@ const Register = () => {
         </button>
 
         <p className="auth-redirect">
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login">Login✨</Link>
         </p>
       </form>
     </div>
