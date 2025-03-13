@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
 
       localStorage.setItem("users", JSON.stringify([...users, newUser]));
       const { password, ...userWithoutPassword } = newUser;
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return userWithoutPassword;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -41,7 +41,7 @@ export const login = createAsyncThunk(
         throw new error("Invalid loginData");
       }
       const { password, ...userWithoutPassword } = user;
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return userWithoutPassword;
     } catch (error) {
       return rejectWithValue(error.message);
