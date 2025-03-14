@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../features/auth/authSlice.js";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
@@ -71,9 +71,27 @@ const Register = () => {
     e.preventDefault();
     if (validateForm()) {
       const { confirmPassword, ...userData } = formData;
-      dispatch(register(userData));
+      dispatch(register(userData))
+        .then(() => {
+          setFormData({
+            username: "",
+            age: "",
+            phone: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
+          setFormErrors({});
+        })
+        .catch((error) => {
+          console.error("Registration failed", error);
+        });
     }
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <div className="auth-container">

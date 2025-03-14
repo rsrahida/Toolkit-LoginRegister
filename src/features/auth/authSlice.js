@@ -32,13 +32,13 @@ export const login = createAsyncThunk(
   "auth/login",
   async (loginData, { rejectWithValue }) => {
     try {
-      const users = localStorage.getItem("users" || []);
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
       const user = users.find(
         (user) =>
           user.email === loginData.email && user.password === loginData.password
       );
       if (!user) {
-        throw new error("Invalid loginData");
+        throw new Error("Email or Password incorrect");
       }
       const { password, ...userWithoutPassword } = user;
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -63,8 +63,8 @@ const loadUserFromStorage = () => {
 };
 
 const initialState = {
-  user: loadUserFromStorage,
-  isAuthenticated: !!loadUserFromStorage,
+  user: loadUserFromStorage(),
+  isAuthenticated: !!loadUserFromStorage(),
   loading: false,
   error: null,
 };
@@ -101,7 +101,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
-        isAuthenticated = true;
+        state.isAuthenticated = true;
         state.user = action.payload;
         localStorage.setItem("user", JSON.stringify(action.payload));
       })

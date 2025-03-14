@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../features/auth/authSlice"; 
-import { Link, Navigate } from "react-router-dom"; 
-import "./Login.css"; 
+import { login } from "../../features/auth/authSlice";
+import { Link, Navigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -22,15 +22,26 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(formData));
+    dispatch(login(formData))
+      .then(() => {
+        setFormData({
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Login failed", error);
+      });
   };
 
-
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2 className="login-header">Login</h2>
+        <h2 className="login-header">🌸 Login 🌸</h2>
         {error && <div className="login-error-message">{error}</div>}
         <div className="login-form-group">
           <label htmlFor="email" className="login-label">
@@ -64,7 +75,7 @@ const Login = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
         <p className="login-redirect">
-          Don't have an account? <Link to="/register">Register</Link>
+          Don't have an account? <Link to="/register">Register✨</Link>
         </p>
       </form>
     </div>
